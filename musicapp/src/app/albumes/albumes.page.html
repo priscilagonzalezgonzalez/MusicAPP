@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-row class= "ion-justify-content-center"> 
+      <ion-icon name="musical-notes-outline"></ion-icon>
+      <div>
+        <ion-title>MusicApp</ion-title>
+      </div>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-title>Álbumes</ion-title>
+  <ion-card *ngFor="let album of albums">
+    <img [src]="album.imagen">
+  <ion-card-header>
+    <ion-card-title>
+      {{album.titulo}}
+    </ion-card-title>
+    <ion-card-subtitle>
+      {{album.artistaNombre}}
+    </ion-card-subtitle>
+    <ion-card-subtitle>
+      {{album.anio}}
+    </ion-card-subtitle>
+  </ion-card-header>
+  </ion-card>
+</ion-content>

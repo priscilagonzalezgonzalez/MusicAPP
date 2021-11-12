@@ -15,7 +15,7 @@
       <ion-card-title>Iniciar sesión</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <form [formGroup]="formularioLogin">
+      <form [formGroup]="formularioLogin" >
         <ion-item>
           <ion-label position="floating">Correo electrónico</ion-label>
           <ion-input formControlName="correo"></ion-input>
@@ -26,7 +26,7 @@
         </ion-item>
         <br>
         <ion-row class= "ion-justify-content-center"> 
-          <ion-button class="" (click)="ingresar()">Ingresar</ion-button>
+          <ion-button (click)="ingresar()">Ingresar</ion-button>
         </ion-row>
       </form>
       
