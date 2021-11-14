@@ -5,6 +5,7 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms'
+import { AlertController, NavController } from '@ionic/angular';
 import { AlbumesService } from '../api/albumes.service'
 import { LoginI } from '../modelos/login.interface';
 
@@ -18,7 +19,7 @@ export class LoginPage implements OnInit {
   // albums = [];
   formularioLogin: FormGroup;
 
-  constructor(private api: AlbumesService, public fb: FormBuilder) { 
+  constructor(private api: AlbumesService, public fb: FormBuilder, public alertController: AlertController, public navCtrl: NavController) { 
     
     this.formularioLogin = this.fb.group({
       'correo': new FormControl("", Validators.required),
@@ -30,21 +31,39 @@ export class LoginPage implements OnInit {
 
   }
 
-  ingresar() {
-    var f = this.formularioLogin.value;
+  async ingresar() {
     var correo = this.formularioLogin.controls['correo'].value
     var password = this.formularioLogin.controls['password'].value
-
     this.api.onLogin(correo, password).
     subscribe(data =>{
       console.log(data);
+      localStorage.setItem('user', JSON.stringify(data))
     });
     
-/*     this.api.getAlbums().
-    subscribe(data =>{
-      this.albums = data;
-      console.log(this.albums);
-    }) */
-
+    if(this.formularioLogin.invalid){
+      const alert = await this.alertController.create({
+        header: 'Datos inválidos',
+        message: 'Tienes que llenar todos los campos.',
+        buttons: ['Aceptar']
+      });
+  
+      await alert.present();
+      return
+    }
+    else{
+      var user = JSON.parse(localStorage.getItem('user'));
+      if(String(user.code) == "ok"){
+        localStorage.setItem('ingresado', 'true');
+        this.navCtrl.navigateRoot('albumes');
+      }else{
+        const alert = await this.alertController.create({
+          header: 'Datos incorrectos',
+          message: 'Los datos ingresados son incorrectos.',
+          buttons: ['Aceptar']
+        });
+    
+        await alert.present();
+      }
+    }
   }
 }

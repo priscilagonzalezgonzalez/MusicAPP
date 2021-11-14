@@ -9,10 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AlbumesService } from './api/albumes.service';
+import { PopoverComponent } from './popover/popover.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, PopoverComponent],
+  entryComponents: [PopoverComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
