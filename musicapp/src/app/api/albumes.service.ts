@@ -17,13 +17,13 @@ export class AlbumesService {
     this.getAlbums();
    }
 
-   onLogin(correo:any, password:any){
+   onLogin(correo:any, password:any): Promise<any>{
     let direccion = "/api/v1/sesiones";
 
     return this.http.post(direccion, {
       "correo": correo,
       "contraseña": password
-    });
+    }).toPromise();
   }
 
   getAlbums() {

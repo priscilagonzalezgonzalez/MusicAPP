@@ -33,13 +33,12 @@ export class LoginPage implements OnInit {
 
 
   async ingresar() {
+    var temp_data: any;
+    var user: any;
     var correo = this.formularioLogin.controls['correo'].value;
     var password = this.formularioLogin.controls['password'].value;
-    this.api.onLogin(correo, password).
-    subscribe(data =>{
-      console.log(data);
-      localStorage.setItem('user', JSON.stringify(data))
-    });
+    user = await this.api.onLogin(correo, password);
+    localStorage.setItem('user', JSON.stringify(user));
     
     if(this.formularioLogin.invalid){
       const alert = await this.alertController.create({
@@ -52,8 +51,9 @@ export class LoginPage implements OnInit {
       return
     }
     else{
-      var user = JSON.parse(localStorage.getItem('user'));
-      if(String(user.code) == "ok"){
+      var user_store = JSON.parse(localStorage.getItem('user'));
+      var code = user_store["code"];
+      if(code == "ok"){
         localStorage.setItem('ingresado', 'true');
         this.navCtrl.navigateRoot('/menu/albumes');
       }else{
@@ -66,5 +66,5 @@ export class LoginPage implements OnInit {
         await alert.present();
       }
     }
-  } 
+  }
 }
