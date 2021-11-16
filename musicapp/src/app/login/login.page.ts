@@ -31,9 +31,10 @@ export class LoginPage implements OnInit {
 
   }
 
+
   async ingresar() {
-    var correo = this.formularioLogin.controls['correo'].value
-    var password = this.formularioLogin.controls['password'].value
+    var correo = this.formularioLogin.controls['correo'].value;
+    var password = this.formularioLogin.controls['password'].value;
     this.api.onLogin(correo, password).
     subscribe(data =>{
       console.log(data);
@@ -54,7 +55,7 @@ export class LoginPage implements OnInit {
       var user = JSON.parse(localStorage.getItem('user'));
       if(String(user.code) == "ok"){
         localStorage.setItem('ingresado', 'true');
-        this.navCtrl.navigateRoot('albumes');
+        this.navCtrl.navigateRoot('/menu/albumes');
       }else{
         const alert = await this.alertController.create({
           header: 'Datos incorrectos',
@@ -65,5 +66,5 @@ export class LoginPage implements OnInit {
         await alert.present();
       }
     }
-  }
+  } 
 }
