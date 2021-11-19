@@ -15,6 +15,11 @@ export class MenuPage implements OnInit {
       icono: 'home'
     },
     {
+      titulo: "Artistas",
+      url: "/menu/artistas",
+      icono: 'home'
+    },
+    {
       titulo: 'Perfil',
       url: '',
       icono: 'person-sharp'

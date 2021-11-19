@@ -13,6 +13,11 @@ const routes: Routes = [
       
     },
     {
+      path: 'artistas',
+      loadChildren: () => import('../../artistas/artistas.module').then( m => m.ArtistasPageModule),
+      
+    },
+    {
       path: 'my-albums',
       loadChildren: () => import('../my-albums/my-albums.module').then( m => m.MyAlbumsPageModule)
     },
