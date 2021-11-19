@@ -15,4 +15,13 @@
 <ion-content>
   <br>
   <ion-title>Artistas</ion-title>
+  <br>
+  <ion-list>
+    <ion-item *ngFor="let artista of artistas">
+      <ion-avatar slot="start">
+        <img src="{{artista.imagen}}" alt="">
+      </ion-avatar>
+      <ion-label>{{artista.nombre}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

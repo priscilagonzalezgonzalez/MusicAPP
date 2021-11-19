@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AlbumesService } from './api/albumes.service';
 import { PopoverComponent } from './popover/popover.component';
+import { ArtistasService } from './api/artistas.service';
 
 @NgModule({
   declarations: [AppComponent, PopoverComponent],
@@ -17,7 +18,8 @@ import { PopoverComponent } from './popover/popover.component';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    AlbumesService
+    AlbumesService,
+    ArtistasService
   ],
   bootstrap: [AppComponent],
 })

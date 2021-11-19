@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArtistasService } from '../api/artistas.service';
 
 @Component({
   selector: 'app-artistas',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./artistas.page.scss'],
 })
 export class ArtistasPage implements OnInit {
+  artistas = [];
 
-  constructor() { }
+  constructor(private artistasService: ArtistasService) { 
 
-  ngOnInit() {
   }
 
+  ngOnInit() {
+    this.artistasService.artistas.subscribe(artistas => {this.artistas = artistas});
+    this.artistasService.getArtistas()
+  }
 }
