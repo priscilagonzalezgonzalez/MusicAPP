@@ -26,6 +26,17 @@ export class AlbumesService {
     }).toPromise();
   }
 
+  signUp(nombre:any, apellido:any, correo:any, password:any): Promise<any>{
+    let direccion = "/api/v1/usuarios";
+
+    return this.http.post(direccion,{
+      "nombre": nombre,
+      "apellido": apellido,
+      "correo": correo,
+      "contraseña": password
+    }).toPromise();
+  }
+
   getAlbums() {
     let direccion = "/api/v1/albumes";
     this.http.get<any[]>(direccion)

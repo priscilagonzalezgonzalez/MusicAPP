@@ -15,7 +15,7 @@
 <ion-content>
   <br>
   <ion-title>Álbumes</ion-title>
-  <ion-card *ngFor="let album of albums">
+  <ion-card *ngFor="let album of albums" (click)="open(album)">
     <img [src]="album.imagen">
   <ion-card-header>
     <ion-card-title>

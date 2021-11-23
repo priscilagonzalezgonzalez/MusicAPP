@@ -20,6 +20,10 @@ export class AlbumesPage implements OnInit {
     this.albumesService.getAlbums()
     // console.log(this.albums)
   }
+
+  open(album:any){
+    console.log(album.id);
+  }
   //psarahi@gmail
 
 /*   async presentPopover(ev: any) {
