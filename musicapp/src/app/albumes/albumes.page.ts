@@ -15,16 +15,13 @@ export class AlbumesPage implements OnInit {
   ngOnInit() {
     this.albumesService.albums.subscribe(albums => {
       this.albums = albums;
-      console.log(this.albums)
     });
     this.albumesService.getAlbums()
-    // console.log(this.albums)
   }
 
   open(album:any){
     console.log(album.id);
   }
-  //psarahi@gmail
 
 /*   async presentPopover(ev: any) {
     const popover = await this.popoverController.create({

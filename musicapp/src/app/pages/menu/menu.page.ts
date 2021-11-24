@@ -15,11 +15,6 @@ export class MenuPage implements OnInit {
       icono: 'home'
     },
     {
-      titulo: "Artistas",
-      url: "/menu/artistas",
-      icono: 'home'
-    },
-    {
       titulo: 'Perfil',
       url: '',
       icono: 'person-sharp'
@@ -30,19 +25,24 @@ export class MenuPage implements OnInit {
       icono: 'headset'
     },
     {
-      titulo: 'Mis canciones',
-      url: '/menu/my-songs',
-      icono: 'disc-sharp'
-    },
-    {
       titulo: 'Mis álbumes favoritos',
       url: '',
       icono: 'heart'
     },
     {
+      titulo: 'Mis canciones',
+      url: '/menu/my-songs',
+      icono: 'disc-sharp'
+    },
+    {
       titulo: 'Mis canciones favoritas',
       url: '',
       icono: 'heart-circle'
+    },
+    {
+      titulo: "Artistas",
+      url: "/menu/artistas",
+      icono: 'mic'
     }
 
   ]

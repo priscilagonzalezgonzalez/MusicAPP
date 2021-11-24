@@ -7,7 +7,6 @@ import {
 } from '@angular/forms'
 import { AlertController, NavController } from '@ionic/angular';
 import { AlbumesService } from '../api/albumes.service'
-import { LoginI } from '../modelos/login.interface';
 
 @Component({
   selector: 'app-login',
