@@ -11,3 +11,15 @@
     </ion-row>
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+  <br>
+  <ion-title></ion-title>
+  <ion-card *ngFor="let track of tracks">
+    <ion-card-header>
+      <ion-card-title>
+        {{track.titulo}}
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

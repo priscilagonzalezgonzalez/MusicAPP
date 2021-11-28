@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlbumesService } from 'src/app/api/albumes.service';
-import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-album',
@@ -17,7 +16,7 @@ export class AlbumPage implements OnInit {
 
   ngOnInit() {
     this.albumId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.api.tracks.subscribe(tracks => {
+    this.api.tracksAlbum.subscribe(tracks => {
       this.tracks = tracks;
     })
     this.api.getTracksAlbum(this.albumId); 

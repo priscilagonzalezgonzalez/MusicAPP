@@ -26,7 +26,7 @@ export class MenuPage implements OnInit {
     },
     {
       titulo: 'Mis álbumes favoritos',
-      url: '',
+      url: '/menu/my-fav-albums',
       icono: 'heart'
     },
     {

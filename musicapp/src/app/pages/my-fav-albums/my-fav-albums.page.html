@@ -13,8 +13,8 @@
 </ion-header>
 
 <ion-content>
-  <br>
-  <ion-title class = "ion-text-center">Álbumes</ion-title>
+  <br> 
+  <ion-title class = "ion-text-center">Álbumes Favoritos</ion-title>
   <ion-card *ngFor="let album of albums" [routerLink]="['../album/' + album.id]">
     <img [src]="album.imagen">
   <ion-card-header>
