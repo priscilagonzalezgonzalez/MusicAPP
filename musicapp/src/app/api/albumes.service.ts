@@ -13,6 +13,7 @@ export class AlbumesService {
   favAlbums = new Subject<any[]>();
   tracksAlbum = new Subject<any[]>();
   myTracks = new Subject<any[]>();
+  album = new Subject<any>();
 
   constructor(private http: HttpClient) {
     this.getAlbums();
@@ -75,6 +76,15 @@ export class AlbumesService {
     this.http.get<any[]>(direccion)
     .subscribe(data=>{
       this.myTracks.next(data)
+      console.log(data);
+    });
+  }
+
+  getAlbum(id:string){
+    let direccion = "/api/v1/albumes/" + id;
+    this.http.get<any>(direccion)
+    .subscribe(data=>{
+      this.album.next(data)
       console.log(data);
     });
   }

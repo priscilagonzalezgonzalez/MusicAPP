@@ -16,12 +16,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-slides>
+  <!-- <ion-slides> -->
     
-    <ion-slide *ngFor="let album of albums" [routerLink]="['../album/' + album.id]">
-      <div class="slide">
+    <!-- <ion-slide *ngFor="let album of albums" [routerLink]="['../album/' + album.id]">
+      <div class="slide"> -->
         
-        <ion-card>
+        <ion-card *ngFor="let album of albums" [routerLink]="['../album/' + album.id]">
           <img [src]="album.imagen">
           <ion-card-header>
             <ion-card-title>
@@ -35,29 +35,10 @@
             </ion-card-subtitle>
           </ion-card-header> 
         </ion-card>
-      </div>
-    </ion-slide>
-  </ion-slides>
-  <!-- <ion-slides>
-    <ion-slide>
-      <br>
-      <ion-title class = "ion-text-center">Álbumes</ion-title>
-      <ion-card *ngFor="let album of albums" [routerLink]="['../album/' + album.id]">
-        <img [src]="album.imagen">
-        <ion-card-header>
-          <ion-card-title>
-            {{album.titulo}}
-          </ion-card-title>
-          <ion-card-subtitle>
-            {{album.artistaNombre}}
-          </ion-card-subtitle>
-          <ion-card-subtitle>
-            {{album.anio}}
-          </ion-card-subtitle>
-        </ion-card-header> 
-      </ion-card>
+      <!-- </div>
     </ion-slide>
   </ion-slides> -->
+  
   <style>
     ion-slides {
       height: 100%;
