@@ -22,7 +22,7 @@ export class MyFavAlbumsPage implements OnInit {
       this.albums = myAlbums;
     });
     
-    this.albumesService.getAlbumsUser(this.userId)
+    this.albumesService.getAlbumsFav(this.userId)
   }
 
 }

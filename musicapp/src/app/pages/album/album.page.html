@@ -17,16 +17,25 @@
 <ion-content>
   <br>
   <ion-card>
-    <div *ngIf="userOwns >= 1">
-      <ion-row class= "ion-justify-content-end">
-        <ion-button>
-          <ion-icon name="pencil-sharp"></ion-icon>
+    <ion-row class= "ion-justify-content-end">
+      <div *ngIf="favorite == 'ok'">
+        <ion-button (click)="rem_fav()">
+          <ion-icon name="heart"></ion-icon>
         </ion-button>
-        <ion-button>
-          <ion-icon name="pencil-sharp"></ion-icon>
+      </div>
+      <div *ngIf="!(favorite == 'ok')">
+        <ion-button (click)="add_fav()">
+          <ion-icon name="heart-outline"></ion-icon>
         </ion-button>
-      </ion-row>
-    </div>
+      </div>
+          
+      <div *ngIf="userOwns >= 1">
+          <ion-button>
+            <ion-icon name="pencil-sharp"></ion-icon>
+          </ion-button>
+      </div>
+    </ion-row>
+    
     <img [src]="album.imagen">
     <ion-card-header>
       

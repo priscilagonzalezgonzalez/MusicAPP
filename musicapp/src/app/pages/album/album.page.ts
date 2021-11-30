@@ -14,6 +14,7 @@ export class AlbumPage implements OnInit {
   userOwns = 0;
   tracks = [];
   album:any;
+  favorite: any;
 
   constructor(private activatedRoute: ActivatedRoute,
     private api: AlbumesService, public navCtrl: NavController) { }
@@ -22,22 +23,47 @@ export class AlbumPage implements OnInit {
     var user_stored = JSON.parse(localStorage.getItem('user'));
     this.userId = user_stored["id"];
     this.albumId = this.activatedRoute.snapshot.paramMap.get('id');
+
     this.album = this.api.album.subscribe(album =>{
       this.album = album;
       if(this.userId == (this.album["usuarioId"]).toString()){
         this.userOwns = 1;
       }
     });
+
     this.api.tracksAlbum.subscribe(tracks => {
       this.tracks = tracks;
     });
-    this.api.getTracksAlbum(this.albumId); 
+
+    var is_fav = await this.api.getFavAlbum(this.userId, this.albumId);
+    console.log(is_fav["code"]);
+    this.favorite = (is_fav["code"]);
+    /* if(is_fav["code"] == "ok"){
+      this.favorite = "ok";
+    } */
+
     this.api.getAlbum(this.albumId);
+    this.api.getTracksAlbum(this.albumId); 
   }
 
   add_song(){
     localStorage.setItem('album', this.albumId);
     this.navCtrl.navigateRoot('/menu/add-song');
+  }
+
+  async add_fav(){
+    var is_fav = await this.api.setFavAlbum(this.userId, this.albumId);
+    console.log(is_fav["code"]);
+    this.favorite = (is_fav["code"]);
+  }
+
+  async rem_fav(){
+    var is_fav = await this.api.remFavAlbum(this.userId, this.albumId);
+    console.log(is_fav["code"]);
+    if(is_fav["code"] == "ok"){
+      this.favorite = "no";
+    }
+      
   }
 
 }

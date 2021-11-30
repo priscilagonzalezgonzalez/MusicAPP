@@ -63,6 +63,23 @@ export class AlbumesService {
     });
   }
 
+  setFavAlbum(usuarioId:any, albumId:any): Promise<any>{
+    let direccion = "/api/v1/usuario/" + usuarioId + "/albumes_fav";
+    return this.http.post(direccion, {
+      "albumId": albumId
+    }).toPromise();
+  }
+
+  remFavAlbum(usuarioId:any, albumId:any): Promise<any>{
+    let direccion = "/api/v1/usuario/" + usuarioId + "/albumes_fav/" + albumId;
+    return this.http.delete(direccion).toPromise();
+  }
+
+  getFavAlbum(usuarioId:any, albumId:any): Promise<any>{
+    let direccion = "api/v1/usuario/" + usuarioId + "/albumes_fav/" + albumId;
+    return this.http.get(direccion).toPromise();
+  }
+
   getTracksAlbum(id:string) {
     let direccion = "/api/v1/albumes/" + id + "/tracks";
     this.http.get<any[]>(direccion)

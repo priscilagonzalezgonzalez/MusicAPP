@@ -31,7 +31,6 @@ export class LoginPage implements OnInit {
 
   }
 
-
   async ingresar() {
     var temp_data: any;
     var user: any;
