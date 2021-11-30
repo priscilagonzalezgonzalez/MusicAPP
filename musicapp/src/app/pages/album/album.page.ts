@@ -62,6 +62,7 @@ export class AlbumPage implements OnInit {
     console.log(is_fav["code"]);
     if(is_fav["code"] == "ok"){
       this.favorite = "no";
+      this.api.getAlbumsFav(this.userId);
     }
       
   }
