@@ -19,7 +19,7 @@ export class AlbumesService {
     this.getAlbums();
    }
 
-   onLogin(correo:any, password:any): Promise<any>{
+  onLogin(correo:any, password:any): Promise<any>{
     let direccion = "/api/v1/sesiones";
 
     return this.http.post(direccion, {
@@ -78,6 +78,16 @@ export class AlbumesService {
       this.myTracks.next(data)
       console.log(data);
     });
+  }
+
+  insertTrack(titulo:any, archivo:any, albumId:any): Promise<any>{
+    let direccion = "/api/v1/tracks";
+
+    return this.http.post(direccion, {
+      "titulo": titulo,
+      "archivo": archivo,
+      "albumId": albumId
+    }).toPromise();
   }
 
   getAlbum(id:string){

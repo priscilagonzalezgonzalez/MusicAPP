@@ -10,7 +10,6 @@ const routes: Routes = [
     children:[{
       path: 'albumes',
       loadChildren: () => import('../../albumes/albumes.module').then( m => m.AlbumesPageModule),
-      
     },
     {
       path: 'artistas',
@@ -24,6 +23,10 @@ const routes: Routes = [
     {
       path: 'album/:id',
       loadChildren: () => import('../album/album.module').then( m => m.AlbumPageModule)
+    },
+    {
+      path: 'add-song',
+      loadChildren: () => import('../add-song/add-song.module').then( m => m.AddSongPageModule)
     },
     {
       path: 'my-songs',

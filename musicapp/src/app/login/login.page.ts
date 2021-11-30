@@ -18,7 +18,8 @@ export class LoginPage implements OnInit {
   // albums = [];
   formularioLogin: FormGroup;
 
-  constructor(private api: AlbumesService, public fb: FormBuilder, public alertController: AlertController, public navCtrl: NavController) { 
+  constructor(private api: AlbumesService, public fb: FormBuilder, 
+    public alertController: AlertController, public navCtrl: NavController) { 
     
     this.formularioLogin = this.fb.group({
       'correo': new FormControl("", Validators.required),

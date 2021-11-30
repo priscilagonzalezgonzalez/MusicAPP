@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AlbumesService } from 'src/app/api/albumes.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class AlbumPage implements OnInit {
   album:any;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private api: AlbumesService) { }
+    private api: AlbumesService, public navCtrl: NavController) { }
 
   async ngOnInit() {
     var user_stored = JSON.parse(localStorage.getItem('user'));
@@ -33,6 +33,11 @@ export class AlbumPage implements OnInit {
     });
     this.api.getTracksAlbum(this.albumId); 
     this.api.getAlbum(this.albumId);
+  }
+
+  add_song(){
+    localStorage.setItem('album', this.albumId);
+    this.navCtrl.navigateRoot('/menu/add-song');
   }
 
 }

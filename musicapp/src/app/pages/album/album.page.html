@@ -1,10 +1,11 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
       <ion-menu-button></ion-menu-button>
       <!-- <ion-back-button defaultHref = "../albums"></ion-back-button> -->
     </ion-buttons>
-    <ion-row class= "ion-padding-start"> 
+    <ion-row>
       <ion-icon name="musical-notes-outline"></ion-icon>
       <div>
         <ion-title>MusicApp</ion-title>
@@ -16,8 +17,19 @@
 <ion-content>
   <br>
   <ion-card>
+    <div *ngIf="userOwns >= 1">
+      <ion-row class= "ion-justify-content-end">
+        <ion-button>
+          <ion-icon name="pencil-sharp"></ion-icon>
+        </ion-button>
+        <ion-button>
+          <ion-icon name="pencil-sharp"></ion-icon>
+        </ion-button>
+      </ion-row>
+    </div>
     <img [src]="album.imagen">
     <ion-card-header>
+      
       <ion-card-title>
         {{album.titulo}}
       </ion-card-title>
@@ -31,10 +43,10 @@
   </ion-card>
   <div *ngIf="userOwns >= 1">
     <ion-row class= "ion-justify-content-center">
-      <ion-button>
-      Agregar canción
-      <ion-icon slot="start" name="add-circle-outline"></ion-icon>
-    </ion-button>
+      <ion-button (click)="add_song()">
+        Agregar canción
+        <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+      </ion-button>
     </ion-row>
   </div>
   <ion-title></ion-title>
@@ -46,3 +58,8 @@
     </ion-card-header>
   </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+  </ion-toolbar>
+</ion-footer>
