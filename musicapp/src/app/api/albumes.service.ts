@@ -19,6 +19,7 @@ export class AlbumesService {
     this.getAlbums();
    }
 
+//Usuario
   onLogin(correo:any, password:any): Promise<any>{
     let direccion = "/api/v1/sesiones";
 
@@ -39,6 +40,7 @@ export class AlbumesService {
     }).toPromise();
   }
 
+//Albumes
   getAlbums() {
     let direccion = "/api/v1/albumes";
     this.http.get<any[]>(direccion)
@@ -55,6 +57,7 @@ export class AlbumesService {
     });
    
   }
+
   getAlbumsFav(id:string) {
     let direccion = " /api/v1/usuario/" + id + "/albumes_fav";
     this.http.get<any[]>(direccion)
@@ -63,6 +66,25 @@ export class AlbumesService {
     });
   }
 
+  getAlbum(id:string){
+    let direccion = "/api/v1/albumes/" + id;
+    this.http.get<any>(direccion)
+    .subscribe(data=>{
+      this.album.next(data)
+      console.log(data);
+    });
+  }
+
+  modifyAlbum(column:any, value:any, albumId:any, usuarioId:any): Promise<any>{
+    let direccion = "/api/v1/usuarios/" + usuarioId + "/albumes/" + albumId;
+
+    return this.http.patch(direccion, {
+      "columna": column,
+      "valor": value
+    }).toPromise();
+  }
+
+//Albumes Favoritos
   setFavAlbum(usuarioId:any, albumId:any): Promise<any>{
     let direccion = "/api/v1/usuario/" + usuarioId + "/albumes_fav";
     return this.http.post(direccion, {
@@ -80,6 +102,7 @@ export class AlbumesService {
     return this.http.get(direccion).toPromise();
   }
 
+//Tracks
   getTracksAlbum(id:string) {
     let direccion = "/api/v1/albumes/" + id + "/tracks";
     this.http.get<any[]>(direccion)
@@ -107,12 +130,5 @@ export class AlbumesService {
     }).toPromise();
   }
 
-  getAlbum(id:string){
-    let direccion = "/api/v1/albumes/" + id;
-    this.http.get<any>(direccion)
-    .subscribe(data=>{
-      this.album.next(data)
-      console.log(data);
-    });
-  }
+  
 }

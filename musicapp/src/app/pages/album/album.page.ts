@@ -52,8 +52,15 @@ export class AlbumPage implements OnInit {
   }
 
   add_song(){
-    localStorage.setItem('album', this.albumId);
+    localStorage.setItem('album', JSON.stringify(this.album));
+    localStorage.setItem('albumId', this.albumId);
     this.navCtrl.navigateRoot('/menu/add-song');
+  }
+
+  modify(){
+    localStorage.setItem('album', JSON.stringify(this.album));
+    localStorage.setItem('albumId', this.albumId);
+    this.navCtrl.navigateRoot('/menu/modify-album');
   }
 
   async add_fav(){

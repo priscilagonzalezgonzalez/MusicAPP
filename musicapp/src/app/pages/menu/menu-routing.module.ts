@@ -29,6 +29,10 @@ const routes: Routes = [
       loadChildren: () => import('../add-song/add-song.module').then( m => m.AddSongPageModule)
     },
     {
+      path: 'modify-album',
+      loadChildren: () => import('../modify-album/modify-album.module').then( m => m.ModifyAlbumPageModule)
+    },  
+    {
       path: 'my-songs',
       loadChildren: () => import('../my-songs/my-songs.module').then( m => m.MySongsPageModule)
     },

@@ -39,7 +39,7 @@ export class AddSongPage implements OnInit {
       return
     }
     else{
-      var albumId = JSON.parse(localStorage.getItem('album'));
+      var albumId = JSON.parse(localStorage.getItem('albumId'));
       var response = await this.api.insertTrack(titulo, archivo, albumId);
       var code = response["code"];
       console.log(code);
@@ -50,7 +50,7 @@ export class AddSongPage implements OnInit {
         });
     
         await alert.present();
-        localStorage.removeItem('album');
+        localStorage.removeItem('albumId');
         this.navCtrl.navigateRoot('/menu/album/' + albumId);
       }else if(code == "no"){
         const alert = await this.alertController.create({
@@ -71,8 +71,8 @@ export class AddSongPage implements OnInit {
   }
 
   cancelar(){
-    var albumId = JSON.parse(localStorage.getItem('album'));
-    localStorage.removeItem('album');
+    var albumId = JSON.parse(localStorage.getItem('albumId'));
+    localStorage.removeItem('albumId');
     this.navCtrl.navigateRoot('/menu/album/' + albumId);
   }
 

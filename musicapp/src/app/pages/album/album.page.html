@@ -32,7 +32,7 @@
       </div>
           
       <div *ngIf="userOwns >= 1">
-          <ion-button>
+          <ion-button (click)="modify()">
             <ion-icon name="pencil-sharp"></ion-icon>
           </ion-button>
       </div>

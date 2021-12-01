@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <!-- <ion-back-button defaultHref = "../albums"></ion-back-button> -->
+    </ion-buttons>
+    <ion-row>
+      <ion-icon name="musical-notes-outline"></ion-icon>
+      <div>
+        <ion-title>MusicApp</ion-title>
+      </div>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class = "ion-text-center">Modificar álbum</ion-card-title>
+    </ion-card-header>
+    <ion-grid>
+      <form [formGroup]="formularioAlbum" >
+        <!-- <ion-row>
+          <ion-col size="9.5">
+            <ion-item>
+              <ion-label position="floating">Título</ion-label>
+              <ion-input  formControlName="titulo"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-button size = "small">
+              <ion-icon name="checkmark-sharp"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row> -->
+        <ion-item>
+          <ion-label position="floating">Título</ion-label>
+          <ion-input formControlName="titulo"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label position="floating">Nombre del artista</ion-label>
+          <ion-input  formControlName="nombreArtista"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label position="floating">Imagen</ion-label>
+          <ion-input  formControlName="imagen"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label position="floating">Año</ion-label>
+          <ion-input type = "number" formControlName="anio"></ion-input>
+        </ion-item>
+        <br>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" (click)="aceptar()">Aceptar</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" (click)="cancelar()">Cancelar</ion-button>
+          </ion-col>
+        </ion-row>
+        <br>
+        
+      </form>
+      
+    </ion-grid>
+    
+    <!-- <ion-card-content>
+      <form [formGroup]="formularioSong" >
+        <ion-item>
+          <ion-label position="floating">Título</ion-label>
+          <ion-input formControlName="titulo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Archivo</ion-label>
+          <ion-input formControlName="archivo"></ion-input>
+        </ion-item>
+        <br>
+        <ion-button expand="block" (click)="agregar()">Agregar</ion-button>
+        <br>
+        <ion-button expand="block" (click)="cancelar()">Cancelar</ion-button>
+        <br>
+      </form>
+      
+    </ion-card-content> -->
+  <!-- </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div>
+          1 of 3
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          2 of 3
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          3 of 3
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+ -->
