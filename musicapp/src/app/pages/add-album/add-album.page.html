@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="[prevURL]">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-row>
+      <ion-icon name="musical-notes-outline"></ion-icon>
+      <div>
+        <ion-title>MusicApp</ion-title>
+      </div>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class = "ion-text-center">Agregar álbum</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formularioAlbum" (ngSubmit)="agregar()">
+        <ion-item>
+          <ion-label position="floating">Título</ion-label>
+          <ion-input formControlName="titulo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Artista</ion-label>
+          <ion-input formControlName="artista"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Año</ion-label>
+          <ion-input formControlName="anio" type="number" min="0" max="2021"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">URL imagen</ion-label>
+          <ion-input formControlName="imagen" type="url"></ion-input>
+        </ion-item>
+        <br>
+        <ion-row class= "ion-justify-content-center"> 
+          <ion-button type="submit" [disabled]="!formularioAlbum.valid">Agregar</ion-button>
+        </ion-row>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
