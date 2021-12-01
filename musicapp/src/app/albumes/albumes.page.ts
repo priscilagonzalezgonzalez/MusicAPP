@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlbumesService } from '../api/albumes.service'
 import { PopoverComponent } from '../popover/popover.component';
 
@@ -9,8 +10,10 @@ import { PopoverComponent } from '../popover/popover.component';
 })
 export class AlbumesPage implements OnInit {
   albums = [];
+  URL: any;
 
-  constructor(private albumesService: AlbumesService){} 
+  constructor(private albumesService: AlbumesService, 
+    private router: Router){} 
 
   ngOnInit() {
     this.albumesService.albums.subscribe(albums => {
@@ -19,8 +22,10 @@ export class AlbumesPage implements OnInit {
     this.albumesService.getAlbums()
   }
 
-  open(album:any){
-    console.log(album.id);
+  snapURL(){
+    this.URL = this.router.url;
+    localStorage.setItem("URL", this.URL);
+    console.log(this.URL);
   }
 
 /*   async presentPopover(ev: any) {

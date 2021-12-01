@@ -14,8 +14,8 @@
 
 <ion-content>
   <br>
-  <ion-title class = "ion-text-center">Álbumes</ion-title>
-  <ion-card *ngFor="let album of albums" [routerLink]="['../album/' + album.id]">
+  <ion-title class = "ion-text-center">Mis álbumes</ion-title>
+  <ion-card *ngFor="let album of albums" (click)="snapURL()" [routerLink]="['../album/' + album.id]">
     <img [src]="album.imagen">
   <ion-card-header>
     <ion-card-title>

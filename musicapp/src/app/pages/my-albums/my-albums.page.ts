@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlbumesService } from 'src/app/api/albumes.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-albums',
@@ -10,9 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 export class MyAlbumsPage implements OnInit {
   albums = [];
   userId: string;
+  URL: string;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private albumesService: AlbumesService){} 
+    private albumesService: AlbumesService,
+    private router: Router){} 
 
   ngOnInit() {
     var user_stored = JSON.parse(localStorage.getItem('user'));
@@ -23,6 +25,12 @@ export class MyAlbumsPage implements OnInit {
     });
     
     this.albumesService.getAlbumsUser(this.userId)
+  }
+
+  snapURL(){
+    this.URL = this.router.url;
+    localStorage.setItem("URL", this.URL);
+    console.log(this.URL);
   }
 
 }

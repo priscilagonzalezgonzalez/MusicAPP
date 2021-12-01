@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlbumesService } from 'src/app/api/albumes.service';
 
 @Component({
@@ -10,9 +10,11 @@ import { AlbumesService } from 'src/app/api/albumes.service';
 export class MyFavAlbumsPage implements OnInit {
   albums = [];
   userId: string;
+  URL:string;
   
   constructor(private activatedRoute: ActivatedRoute,
-    private albumesService: AlbumesService){} 
+    private albumesService: AlbumesService,
+    private router: Router){} 
 
   ngOnInit() {
     var user_stored = JSON.parse(localStorage.getItem('user'));
@@ -23,6 +25,12 @@ export class MyFavAlbumsPage implements OnInit {
     });
     
     this.albumesService.getAlbumsFav(this.userId)
+  }
+
+  snapURL(){
+    this.URL = this.router.url;
+    localStorage.setItem("URL", this.URL);
+    console.log(this.URL);
   }
 
 }

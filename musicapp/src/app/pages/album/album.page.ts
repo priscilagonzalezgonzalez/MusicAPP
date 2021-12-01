@@ -15,13 +15,18 @@ export class AlbumPage implements OnInit {
   tracks = [];
   album:any;
   favorite: any;
+  prevURL:string; 
 
   constructor(private activatedRoute: ActivatedRoute,
     private api: AlbumesService, public navCtrl: NavController) { }
 
   async ngOnInit() {
+    this.prevURL = localStorage.getItem("URL");
+    // localStorage.removeItem("URL");
+
     var user_stored = JSON.parse(localStorage.getItem('user'));
     this.userId = user_stored["id"];
+
     this.albumId = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.album = this.api.album.subscribe(album =>{
