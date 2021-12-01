@@ -29,9 +29,15 @@
     </ion-card-subtitle>
   </ion-card-header>
   </ion-card>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="snapURL()" [routerLink]="['../add-album/']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
-
+<!--
 <ion-footer>
   <ion-toolbar color="primary">
   </ion-toolbar>
 </ion-footer>
+-->

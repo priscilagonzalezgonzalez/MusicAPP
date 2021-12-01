@@ -17,4 +17,9 @@ export class ArtistasService {
       this.artistas.next(data)
     });
     }
+  
+  getArtista(nombre:string): Promise<any> {
+    let direccion = "/api/v1/artistas/" + nombre;
+    return this.http.get(direccion).toPromise();
+  }
 }
