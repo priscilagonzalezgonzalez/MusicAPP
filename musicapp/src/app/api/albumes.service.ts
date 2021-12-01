@@ -130,5 +130,18 @@ export class AlbumesService {
     }).toPromise();
   }
 
+  insertAlbum(titulo:any, artista:any, anio:any, imagen:any, usuarioId:any) {
+    let direccion = "/api/v1/albumes"
+
+    return this.http.post(direccion, {
+      "titulo": titulo,
+      "artista": artista,
+      "anio": anio,
+      "imagen": imagen,
+      "usuarioId": usuarioId
+    }).toPromise();
+  }
+}
+
   
 }
