@@ -23,7 +23,11 @@ const routes: Routes = [
     path: 'menu',
     loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule),
     canActivate: [IngresadoGuard]
+  },  {
+    path: 'my-reviews',
+    loadChildren: () => import('./pages/my-reviews/my-reviews.module').then( m => m.MyReviewsPageModule)
   },
+
   
 
   

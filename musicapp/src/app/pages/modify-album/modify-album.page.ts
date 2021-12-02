@@ -17,6 +17,7 @@ export class ModifyAlbumPage implements OnInit {
   albumImagen:string;
   albumId: string;
   usuarioId: string;
+  artista:any;
  
   constructor(private api: AlbumesService, 
     public fb: FormBuilder, 
@@ -52,7 +53,8 @@ export class ModifyAlbumPage implements OnInit {
     var artista = this.formularioAlbum.controls['nombreArtista'].value;
     var imagen = this.formularioAlbum.controls['imagen'].value;
     var anio = this.formularioAlbum.controls['anio'].value;
-    var data = await this.artistas.getArtista(artista);
+    this.artista = await this.artistas.getArtista(artista);
+    console.log(this.artista);
     var ok = ["ok", "ok", "ok", "ok"];
     //Modificar titulo
     if(this.formularioAlbum.invalid){
@@ -76,7 +78,10 @@ export class ModifyAlbumPage implements OnInit {
       }
     
       if(this.albumArtista != artista){
-        if(data.usuarioId != this.usuarioId){
+        
+        console.log(this.artista);
+        console.log(this.artista.usuarioId);
+        if(this.artista["usuarioId"] != this.usuarioId){
           const alert = await this.alertController.create({
             header: 'Artista no valido',
             message: 'Este artista no te pertence',
@@ -87,7 +92,8 @@ export class ModifyAlbumPage implements OnInit {
           return
         }
         else{
-          var response = await this.api.modifyAlbum("artistaId", data.id, this.albumId, this.usuarioId);
+          var response = await this.api.modifyAlbum("artistaId", this.artista.id, this.albumId, this.usuarioId);
+          console.log("arista: ", this.artista.id);
           var code = response["code"];
           console.log("arista: ", code);
           if(code != "ok"){
@@ -95,7 +101,6 @@ export class ModifyAlbumPage implements OnInit {
           }
         }
       }
-      /* 
 
       if(this.albumImagen != imagen){
         var response = await this.api.modifyAlbum("imagen", imagen, this.albumId, this.usuarioId);
@@ -115,7 +120,8 @@ export class ModifyAlbumPage implements OnInit {
         }
       }
 
-      for(code in ok){
+      ok.forEach(async code => {
+        console.log(code)
         if(code != "ok"){
           const alert = await this.alertController.create({
             header: 'Ha ocurrido un error',
@@ -124,9 +130,11 @@ export class ModifyAlbumPage implements OnInit {
           });
     
           await alert.present();
+          console.log(ok)
           return
         }
-      } */
+      });
+      
       const alert = await this.alertController.create({
         header: 'Modificado con éxito.',
         buttons: ['Aceptar']
