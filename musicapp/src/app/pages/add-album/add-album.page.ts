@@ -80,6 +80,7 @@ export class AddAlbumPage implements OnInit {
           buttons: ['Aceptar']
         });
         await alert.present();
+        this.albums.getAlbumsUser(usuarioId);
         this.navCtrl.navigateRoot('/menu/my-albums');
       }
     }
