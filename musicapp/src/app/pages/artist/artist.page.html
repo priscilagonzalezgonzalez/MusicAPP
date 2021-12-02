@@ -17,9 +17,9 @@
 
 <ion-content>
   <ion-img [src]="artista.imagen"></ion-img>
-  <br>
-  <ion-title class = "ion-text-center" [size]="large" style="align-items: center">{{artista.nombre}}</ion-title>
-  <br>
+  <ion-item [color]="secondary">
+    <ion-title class = "ion-text-center" [size]="large">{{artista.nombre}}</ion-title>
+  </ion-item>
   <ion-item>
     <ion-label class="ion-text-wrap">
       {{artista.biografia}}
