@@ -147,4 +147,8 @@ export class ModifyAlbumPage implements OnInit {
     }
   }
 
+  cancelar() {
+    this.navCtrl.navigateRoot('/menu/album/' + this.albumId);
+  }
+
 }

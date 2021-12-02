@@ -12,6 +12,7 @@ export class AlbumesService {
   myAlbums = new Subject<any[]>();
   favAlbums = new Subject<any[]>();
   tracksAlbum = new Subject<any[]>();
+  albumsArtista = new Subject<any[]>();
   myTracks = new Subject<any[]>();
   favTracks = new Subject<any[]>();
   album = new Subject<any>();
@@ -64,6 +65,14 @@ export class AlbumesService {
     this.http.get<any[]>(direccion)
     .subscribe(data=>{
       this.favAlbums.next(data)
+    });
+  }
+
+  getAlbumsArtista(id:string) {
+    let direccion = "/api/v1/artistas/" + id + "/albums";
+    this.http.get<any[]>(direccion)
+    .subscribe(data=>{
+      this.albumsArtista.next(data)
     });
   }
 
@@ -178,5 +187,3 @@ export class AlbumesService {
     }).toPromise();
   }
 }
-
-

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="[prevURL]">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-row>
+      <ion-icon name="musical-notes-outline"></ion-icon>
+      <div>
+        <ion-title>MusicApp</ion-title>
+      </div>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img [src]="artista.imagen"></ion-img>
+  <ion-item [color]="secondary">
+    <ion-title class = "ion-text-center" size="large" mode="md">{{artista.nombre}}</ion-title>
+  </ion-item>
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      {{artista.biografia}}
+    </ion-label>
+  </ion-item>
+
+  <div *ngIf="!(numAlbums == 0)">
+    <br>
+    <ion-title class = "ion-text-center" size="small" mode="md">Álbumes</ion-title>
+  </div>
+  <ion-card *ngFor="let album of albums" (click)="snapURL()" [routerLink]="['../../album/' + album.id]">
+    <img [src]="album.imagen">
+    <ion-card-header>
+      <ion-card-title>
+        {{album.titulo}}
+      </ion-card-title>
+      <ion-card-subtitle>
+        {{album.anio}}
+      </ion-card-subtitle>
+    </ion-card-header> 
+  </ion-card>
+</ion-content>

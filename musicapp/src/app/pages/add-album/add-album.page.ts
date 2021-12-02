@@ -7,7 +7,7 @@ import {
 } from '@angular/forms'
 import { AlbumesService } from 'src/app/api/albumes.service';
 import { ArtistasService } from 'src/app/api/artistas.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-album',
@@ -18,7 +18,13 @@ export class AddAlbumPage implements OnInit {
   formularioAlbum:FormGroup
   prevURL:string;
 
-  constructor(private albums: AlbumesService, private artistas: ArtistasService, public fb: FormBuilder,public alertController: AlertController) {
+  constructor(
+    private albums: AlbumesService, 
+    private artistas: ArtistasService, 
+    public fb: FormBuilder,
+    public alertController: AlertController,
+    public navCtrl: NavController
+    ) {
     this.formularioAlbum = this.fb.group({
       "titulo": new FormControl('', Validators.required),
       "artista": new FormControl('', Validators.required),
@@ -41,7 +47,7 @@ export class AddAlbumPage implements OnInit {
     var respuesta:any
     var data = await this.artistas.getArtista(artista)
     
-    if (data.usuarioId != usuarioId)
+    if ((data.usuarioId != usuarioId) && (data.usuarioId != undefined))
     {
       const alert = await this.alertController.create({
         header: 'Artista no valido',
@@ -54,7 +60,7 @@ export class AddAlbumPage implements OnInit {
     }
     else{
       respuesta = await this.albums.insertAlbum(titulo, artista, anio, imagen, usuarioId);
-
+      console.log(respuesta)
       if (respuesta.code == "no")
       {
         const alert = await this.alertController.create({
@@ -65,6 +71,16 @@ export class AddAlbumPage implements OnInit {
     
         await alert.present();
         return
+      }
+      else if (respuesta.code == "ok")
+      {
+        console.log("SI se agrego")
+        const alert = await this.alertController.create({
+          header: 'Agregado con éxito.',
+          buttons: ['Aceptar']
+        });
+        await alert.present();
+        this.navCtrl.navigateRoot('/menu/my-albums');
       }
     }
   }
