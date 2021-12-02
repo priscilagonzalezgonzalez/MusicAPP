@@ -111,6 +111,11 @@ export class AlbumesService {
     });
   }
 
+  getTracksAlbumAsync(id:string): Promise<any> {
+    let direccion = "/api/v1/albumes/" + id + "/tracks";
+    return this.http.get(direccion).toPromise();
+  }
+
   getTracksUser(id:string){
     let direccion = "/api/v1/usuario/" + id + "/tracks";
     this.http.get<any[]>(direccion)
@@ -118,6 +123,23 @@ export class AlbumesService {
       this.myTracks.next(data)
       console.log(data);
     });
+  }
+
+  getFavTrack(usuarioId:any, trackId:any): Promise<any>{
+    let direccion = "api/v1/usuario/" + usuarioId + "/tracks_fav/" + trackId;
+    return this.http.get(direccion).toPromise();
+  }
+
+  setFavTrack(usuarioId:any, trackId:any): Promise<any>{
+    let direccion = "/api/v1/usuario/" + usuarioId + "/tracks_fav/" + trackId;
+    return this.http.post(direccion, {
+      "trackId": trackId
+    }).toPromise();
+  }
+
+  remFavTrack(usuarioId:any, trackId:any): Promise<any>{
+    let direccion = "api/v1/usuario/" + usuarioId + "/tracks_fav/" + trackId;
+    return this.http.delete(direccion).toPromise();
   }
 
   insertTrack(titulo:any, archivo:any, albumId:any): Promise<any>{
@@ -143,5 +165,4 @@ export class AlbumesService {
   }
 }
 
-  
-}
+

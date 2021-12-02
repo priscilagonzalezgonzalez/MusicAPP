@@ -61,12 +61,31 @@
     </ion-row>
   </div>
   <ion-title></ion-title>
-  <ion-card *ngFor="let track of tracks">
-    <ion-card-header>
-      <ion-card-title>
-        {{track.titulo}}
-      </ion-card-title>
-    </ion-card-header>
+  <ion-card *ngFor="let track of tracks; let i=index">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="9">
+          <ion-card-header>
+            <ion-card-title>
+              {{track.titulo}}
+            </ion-card-title>
+          </ion-card-header>
+        </ion-col>
+        <ion-col>
+          <div *ngIf="favoriteSong[i].code == 'ok'">
+            <ion-button (click)="rem_fav_song(i)">
+              <ion-icon name="heart"></ion-icon>
+            </ion-button>
+          </div>
+          <div *ngIf="!(favoriteSong[i].code == 'ok')">
+            <ion-button (click)="add_fav_song(i)">
+              <ion-icon name="heart-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
   </ion-card>
 </ion-content>
 

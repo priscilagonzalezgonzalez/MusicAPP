@@ -15,6 +15,7 @@ export class AlbumPage implements OnInit {
   tracks = [];
   album:any;
   favorite: any;
+  favoriteSong = [];
   prevURL:string; 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -40,6 +41,14 @@ export class AlbumPage implements OnInit {
       this.tracks = tracks;
     });
 
+    var tracks = await this.api.getTracksAlbumAsync(this.albumId);
+    tracks.forEach(async element => {
+      var code = await this.api.getFavTrack(this.userId, element["id"]);
+      console.log(code);
+      this.favoriteSong.push({"code": code["code"], "id": element["id"]});
+    });
+    
+
     var is_fav = await this.api.getFavAlbum(this.userId, this.albumId);
     console.log(is_fav["code"]);
     this.favorite = (is_fav["code"]);
@@ -49,6 +58,9 @@ export class AlbumPage implements OnInit {
 
     this.api.getAlbum(this.albumId);
     this.api.getTracksAlbum(this.albumId); 
+
+    console.log(tracks);
+    console.log(this.favoriteSong);
   }
 
   add_song(){
@@ -76,7 +88,24 @@ export class AlbumPage implements OnInit {
       this.favorite = "no";
       this.api.getAlbumsFav(this.userId);
     }
-      
+  }
+
+  async add_fav_song(index){
+    var trackId = this.favoriteSong[index].id;
+    console.log(trackId);
+    var is_fav = await this.api.setFavTrack(this.userId, trackId);
+    this.favoriteSong[index].code = is_fav["code"];
+    console.log(this.favoriteSong[index].code);
+  }
+
+  async rem_fav_song(index){
+    var trackId = this.favoriteSong[index].id;
+    var is_fav = await this.api.remFavTrack(this.userId, trackId);
+    console.log(is_fav["code"]);
+    if(is_fav["code"] == "ok"){
+      this.favoriteSong[index].code = "no";
+      //Actualizar vista de tracks favoritos
+    }
   }
 
 }
