@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 })
 export class ArtistasService {
   artistas = new Subject<any[]>()
+  artista = new Subject<any>()
 
   constructor(private http:HttpClient) { 
     this.getArtistas();
@@ -21,5 +22,12 @@ export class ArtistasService {
   getArtista(nombre:string): Promise<any> {
     let direccion = "/api/v1/artistas/" + nombre;
     return this.http.get(direccion).toPromise();
+  }
+
+  getArtistaById(id:string) {
+    let direccion = "/api/v1/artistas/" + id;
+    this.http.get<any>(direccion).subscribe(data => {
+      this.artista.next(data)
+    })
   }
 }

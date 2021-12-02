@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="[prevURL]">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-row>
+      <ion-icon name="musical-notes-outline"></ion-icon>
+      <div>
+        <ion-title>MusicApp</ion-title>
+      </div>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img [src]="artista.imagen"></ion-img>
+  <br>
+  <ion-title class = "ion-text-center" [size]="large" style="align-items: center">{{artista.nombre}}</ion-title>
+  <br>
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      {{artista.biografia}}
+    </ion-label>
+  </ion-item>
+</ion-content>

@@ -178,5 +178,3 @@ export class AlbumesService {
     }).toPromise();
   }
 }
-
-

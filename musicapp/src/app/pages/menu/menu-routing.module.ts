@@ -51,6 +51,10 @@ const routes: Routes = [
     {
       path: 'my-fav-albums',
       loadChildren: () => import('../my-fav-albums/my-fav-albums.module').then( m => m.MyFavAlbumsPageModule)
+    },
+    {
+      path: 'artist/:id',
+      loadChildren: () => import('../artist/artist.module').then( m => m.ArtistPageModule)
     },]
   }
 ];
