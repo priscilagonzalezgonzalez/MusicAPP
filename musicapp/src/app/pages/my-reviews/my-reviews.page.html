@@ -1,9 +1,41 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>my-reviews</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-row class= "ion-padding-start"> 
+      <ion-icon name="musical-notes-outline"></ion-icon>
+      <div>
+        <ion-title>MusicApp</ion-title>
+      </div>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
+<br> 
 <ion-content>
-
+  <ion-title class = "ion-text-center">Mis reseñas</ion-title>
+  <ion-list>
+    <ion-item *ngFor="let review of myReviews">
+      <ion-avatar slot="start">
+        <img src="{{review.album.imagen}}" alt="">
+      </ion-avatar>
+      <ion-card-header>
+        <ion-card-title>
+          {{review.album.titulo}}
+        </ion-card-title>
+        <ion-card-subtitle>
+          {{review.album.artistaNombre}}
+        </ion-card-subtitle>
+        <ion-card-subtitle>
+          {{review.texto}}
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+  </ion-toolbar>
+</ion-footer>

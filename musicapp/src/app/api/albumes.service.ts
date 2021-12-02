@@ -16,6 +16,7 @@ export class AlbumesService {
   myTracks = new Subject<any[]>();
   favTracks = new Subject<any[]>();
   album = new Subject<any>();
+  myReviews = new Subject<any[]>();
 
   constructor(private http: HttpClient) {
     this.getAlbums();
@@ -176,7 +177,7 @@ export class AlbumesService {
   }
 
   insertAlbum(titulo:any, artista:any, anio:any, imagen:any, usuarioId:any) {
-    let direccion = "/api/v1/albumes"
+    let direccion = "/api/v1/albumes";
 
     return this.http.post(direccion, {
       "titulo": titulo,
@@ -185,5 +186,14 @@ export class AlbumesService {
       "imagen": imagen,
       "usuarioId": usuarioId
     }).toPromise();
+  }
+
+  //Reviews
+  getReviews(usuarioId:any){
+    let direccion = "/api/v1/usuarios/" + usuarioId + "/resenias";
+    this.http.get<any[]>(direccion)
+    .subscribe(data=>{
+      this.myReviews.next(data)
+    });
   }
 }

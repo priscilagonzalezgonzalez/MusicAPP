@@ -43,6 +43,11 @@ export class MenuPage implements OnInit {
       titulo: "Artistas",
       url: "/menu/artistas",
       icono: 'mic'
+    },
+    {
+      titulo: "Mis reseñas",
+      url: "/menu/my-reviews",
+      icono: 'eye-outline'
     }
 
   ]
