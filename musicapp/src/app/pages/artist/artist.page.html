@@ -18,7 +18,7 @@
 <ion-content>
   <ion-img [src]="artista.imagen"></ion-img>
   <ion-item [color]="secondary">
-    <ion-title class = "ion-text-center" [size]="large" mode="md">{{artista.nombre}}</ion-title>
+    <ion-title class = "ion-text-center" size="large" mode="md">{{artista.nombre}}</ion-title>
   </ion-item>
   <ion-item>
     <ion-label class="ion-text-wrap">
@@ -28,7 +28,7 @@
 
   <div *ngIf="!(numAlbums == 0)">
     <br>
-    <ion-title>Álbumes</ion-title>
+    <ion-title class = "ion-text-center" size="small" mode="md">Álbumes</ion-title>
   </div>
   <ion-card *ngFor="let album of albums" (click)="snapURL()" [routerLink]="['../../album/' + album.id]">
     <img [src]="album.imagen">
