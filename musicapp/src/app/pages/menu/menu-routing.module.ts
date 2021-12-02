@@ -45,6 +45,10 @@ const routes: Routes = [
       loadChildren: () => import('../songs/songs.module').then( m => m.SongsPageModule)
     },
     {
+      path: 'my-fav-songs',
+      loadChildren: () => import('../my-fav-songs/my-fav-songs.module').then( m => m.MyFavSongsPageModule)
+    },
+    {
       path: 'my-fav-albums',
       loadChildren: () => import('../my-fav-albums/my-fav-albums.module').then( m => m.MyFavAlbumsPageModule)
     },]

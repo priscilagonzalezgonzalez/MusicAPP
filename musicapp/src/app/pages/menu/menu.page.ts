@@ -36,7 +36,7 @@ export class MenuPage implements OnInit {
     },
     {
       titulo: 'Mis canciones favoritas',
-      url: '',
+      url: '/menu/my-fav-songs',
       icono: 'heart-circle'
     },
     {

@@ -13,6 +13,7 @@ export class AlbumesService {
   favAlbums = new Subject<any[]>();
   tracksAlbum = new Subject<any[]>();
   myTracks = new Subject<any[]>();
+  favTracks = new Subject<any[]>();
   album = new Subject<any>();
 
   constructor(private http: HttpClient) {
@@ -111,6 +112,10 @@ export class AlbumesService {
     });
   }
 
+  getTracksFav(){
+
+  }
+
   getTracksAlbumAsync(id:string): Promise<any> {
     let direccion = "/api/v1/albumes/" + id + "/tracks";
     return this.http.get(direccion).toPromise();
@@ -121,6 +126,15 @@ export class AlbumesService {
     this.http.get<any[]>(direccion)
     .subscribe(data=>{
       this.myTracks.next(data)
+      console.log(data);
+    });
+  }
+
+  getFavTracks(usuarioId:any){
+    let direccion = "/api/v1/usuario/" + usuarioId + "/tracks_fav";
+    this.http.get<any[]>(direccion)
+    .subscribe(data=>{
+      this.favTracks.next(data)
       console.log(data);
     });
   }
