@@ -142,6 +142,3 @@ export class AlbumesService {
     }).toPromise();
   }
 }
-
-  
-}
