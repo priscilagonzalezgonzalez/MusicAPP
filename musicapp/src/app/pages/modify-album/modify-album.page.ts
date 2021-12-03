@@ -69,7 +69,39 @@ export class ModifyAlbumPage implements OnInit {
     }
     else{
       if(this.albumTitulo != titulo){
+        if(this.albumArtista != artista){ //Quiere modificar titulo y artista, verificar si ya existe el álbum con los datos actuales
+          var yaExiste = await this.api.albumExists(titulo, artista)
+          var code = yaExiste["code"];
+          console.log("titulo: ", code);
+          if(code == "ok"){
+            const alert = await this.alertController.create({
+              header: 'Álbum ya existe',
+              message: 'Estás intentando crear un álbum que ya existe.',
+              buttons: ['Aceptar']
+            });
+      
+            await alert.present();
+            console.log(ok)
+            return
+          }
+        }else{ //No está modificando el artista, verificar si ya existe el álbum con el dato previo
+          var yaExiste = await this.api.albumExists(titulo, this.albumArtista)
+          var code = yaExiste["code"];
+          console.log("titulo: ", code);
+          if(code == "ok"){
+            const alert = await this.alertController.create({
+              header: 'Álbum ya existe',
+              message: 'Estás intentando crear un álbum que ya existe.',
+              buttons: ['Aceptar']
+            });
+      
+            await alert.present();
+            console.log(ok)
+            return
+          }
+        }
         var response = await this.api.modifyAlbum("titulo", titulo, this.albumId, this.usuarioId);
+        
         var code = response["code"];
         console.log("titulo: ", code);
         if(code != "ok"){
@@ -77,8 +109,20 @@ export class ModifyAlbumPage implements OnInit {
         }
       }
     
-      if(this.albumArtista != artista){
-        
+      else if(this.albumArtista != artista){ //Solo quiere modificar al artista, no el título
+        var yaExiste = await this.api.albumExists(titulo, artista);
+        var code = yaExiste["code"];
+        if(code == "ok"){
+          const alert = await this.alertController.create({
+            header: 'Álbum ya existe',
+            message: 'Estás intentando crear un álbum que ya existe.',
+            buttons: ['Aceptar']
+          });
+    
+          await alert.present();
+          console.log(ok)
+          return
+        }
         console.log(this.artista);
         console.log(this.artista.usuarioId);
         if(this.artista["usuarioId"] != this.usuarioId){
