@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 })
 export class ArtistasService {
   artistas = new Subject<any[]>()
+  artistasUsuario = new Subject<any[]>()
   artista = new Subject<any>()
 
   constructor(private http:HttpClient) { 
@@ -17,7 +18,14 @@ export class ArtistasService {
     this.http.get<any[]>("/api/v1/artistas").subscribe(data => {
       this.artistas.next(data)
     });
-    }
+  }
+
+  getArtistaUsuario(id:string) {
+    let direccion = "/api/v1/usuario/" + id + "/artistas";
+    this.http.get<any[]>(direccion).subscribe(data => 
+      this.artistasUsuario.next(data)
+    );
+  }
   
   getArtista(nombre:string): Promise<any> {
     let direccion = "/api/v1/artistas/" + nombre;

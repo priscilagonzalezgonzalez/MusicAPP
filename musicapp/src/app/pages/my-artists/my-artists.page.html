@@ -14,7 +14,7 @@
 
 <ion-content>
   <br>
-  <ion-title class = "ion-text-center" mode="md">Artistas</ion-title>
+  <ion-title class = "ion-text-center" mode="md">Mis artistas</ion-title>
   <br>
   <ion-list>
     <ion-item *ngFor="let artista of artistas" (click)="snapURL()" [routerLink]="['../artist/' + artista.id]">
@@ -24,4 +24,9 @@
       <ion-label>{{artista.nombre}}</ion-label>
     </ion-item>
   </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button >
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

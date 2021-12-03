@@ -48,8 +48,12 @@ export class MenuPage implements OnInit {
       titulo: "Mis reseñas",
       url: "/menu/my-reviews",
       icono: 'eye-outline'
+    },
+    {
+      titulo: "Mis artistas",
+      url: "/menu/my-artists",
+      icono: 'accessibility'
     }
-
   ]
   constructor(public alertController: AlertController,
     public navCtrl: NavController) { }
