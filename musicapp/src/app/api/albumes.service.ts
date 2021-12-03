@@ -95,6 +95,12 @@ export class AlbumesService {
     }).toPromise();
   }
 
+  remAlbum(usuarioId:any, albumId:any){
+    let direccion = "/api/v1/usuarios/" + usuarioId + "/albumes/" + albumId
+
+    return this.http.delete(direccion).toPromise();
+  }
+
 //Albumes Favoritos
   setFavAlbum(usuarioId:any, albumId:any): Promise<any>{
     let direccion = "/api/v1/usuario/" + usuarioId + "/albumes_fav";

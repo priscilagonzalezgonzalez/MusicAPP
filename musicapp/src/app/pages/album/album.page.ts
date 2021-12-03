@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { AlbumesService } from 'src/app/api/albumes.service';
 
 @Component({
@@ -19,7 +19,8 @@ export class AlbumPage implements OnInit {
   prevURL:string; 
 
   constructor(private activatedRoute: ActivatedRoute,
-    private api: AlbumesService, public navCtrl: NavController) { }
+    private api: AlbumesService, public navCtrl: NavController,
+    public alertController: AlertController) { }
 
   async ngOnInit() {
     this.prevURL = localStorage.getItem("URL");
@@ -80,6 +81,52 @@ export class AlbumPage implements OnInit {
     localStorage.setItem('albumId', this.albumId);
     this.navCtrl.navigateRoot('/menu/modify-album');
   }
+
+  async delete(){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      message: 'Estás a punto de eliminar el álbum, ¿deseas continuar?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        },
+        {
+          text: 'Eliminar',
+          handler: async () => {
+            var response = await this.api.remAlbum(this.userId, this.albumId);
+            if(response["code"] == "ok"){
+              const alert = await this.alertController.create({
+                header: 'Eliminado con éxito.',
+                buttons: ['Aceptar']
+              });
+              await alert.present();
+              this.api.getAlbums();
+              this.api.getAlbumsFav(this.userId);
+              this.api.getAlbumsUser(this.userId);
+
+              this.navCtrl.navigateRoot(this.prevURL);
+            }
+            else{
+              const alert = await this.alertController.create({
+                header: 'Ha ocurrido un error.',
+                message: 'No se ha podido eliminar el álbum.',
+                buttons: ['Aceptar']
+              });
+              await alert.present();
+              return
+            }
+            
+          }
+        }]
+    });
+
+    await alert.present();
+  }
+  
 
   //Favoritos
   async add_fav(){

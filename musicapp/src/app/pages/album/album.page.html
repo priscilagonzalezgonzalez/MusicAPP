@@ -36,6 +36,11 @@
             <ion-icon name="pencil-sharp"></ion-icon>
           </ion-button>
       </div>
+      <div *ngIf="userOwns >= 1">
+        <ion-button (click)="delete()">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+    </div>
     </ion-row>
     
     <img [src]="album.imagen">
