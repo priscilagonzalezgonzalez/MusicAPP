@@ -74,7 +74,6 @@ export class AddAlbumPage implements OnInit {
       }
       else if (respuesta.code == "ok")
       {
-        console.log("SI se agrego")
         const alert = await this.alertController.create({
           header: 'Agregado con éxito.',
           buttons: ['Aceptar']

@@ -20,20 +20,11 @@ export class MyArtistsPage implements OnInit {
 
   ngOnInit() {
     this.usuarioId = JSON.parse(localStorage.getItem('user'))["id"];
-    this.artistasService.artistasUsuario.subscribe(artistas => {this.artistas = artistas});
-    this.artistasService.getArtistaUsuario(this.usuarioId);
+    this.artistasService.artistasUsuario.subscribe(artistas => this.artistas = artistas);
+    this.artistasService.getArtistasUsuario(this.usuarioId);
   }
 
   snapURL(){
     localStorage.setItem("URL", this.router.url);
-    console.log("snap")
-  }
-
-  modify(){
-    this.navCtrl.navigateRoot('/menu/albumes');
-  }
-
-  delete(id:string){
-    console.log("Eliminar artista con id:" + id)
   }
 }

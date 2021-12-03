@@ -20,7 +20,7 @@ export class ArtistasService {
     });
   }
 
-  getArtistaUsuario(id:string) {
+  getArtistasUsuario(id:string) {
     let direccion = "/api/v1/usuario/" + id + "/artistas";
     this.http.get<any[]>(direccion).subscribe(data => 
       this.artistasUsuario.next(data)
@@ -37,5 +37,16 @@ export class ArtistasService {
     this.http.get<any>(direccion).subscribe(data => {
       this.artista.next(data)
     })
+  }
+
+  insertArtist(nombre:any, biografia:any, imagen:any, usuarioId:any) {
+    let direccion = "/api/v1/artistas";
+
+    return this.http.post(direccion, {
+      "nombre": nombre,
+      "biografia": biografia,
+      "imagen": imagen,
+      "usuarioId": usuarioId
+    }).toPromise();
   }
 }

@@ -23,9 +23,7 @@ const routes: Routes = [
     path: 'menu',
     loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule),
     canActivate: [IngresadoGuard]
-  }
-
-  
+  },  
 ];
 
 @NgModule({
