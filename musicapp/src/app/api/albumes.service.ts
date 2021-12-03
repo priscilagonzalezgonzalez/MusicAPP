@@ -188,6 +188,14 @@ export class AlbumesService {
     }).toPromise();
   }
 
+  albumExists(titulo:any, artista:any){
+    let direccion = "/api/v1/album"
+    return this.http.post(direccion, {
+      "titulo": titulo,
+      "artista": artista
+    }).toPromise();
+  }
+
   //Reviews
   getReviews(usuarioId:any){
     let direccion = "/api/v1/usuarios/" + usuarioId + "/resenias";
@@ -195,5 +203,15 @@ export class AlbumesService {
     .subscribe(data=>{
       this.myReviews.next(data)
     });
+  }
+
+  insertReview(texto: any, usuarioId: any, albumId: any): Promise<any>{
+    let direccion = "/api/v1/resenias";
+    return this.http.post(direccion,
+      {
+        "texto": texto,
+        "usuarioId": usuarioId,
+        "albumId": albumId
+      }).toPromise();
   }
 }

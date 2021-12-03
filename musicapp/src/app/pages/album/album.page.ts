@@ -69,12 +69,19 @@ export class AlbumPage implements OnInit {
     this.navCtrl.navigateRoot('/menu/add-song');
   }
 
+  add_review(){
+    localStorage.setItem('album', JSON.stringify(this.album));
+    localStorage.setItem('albumId', this.albumId);
+    this.navCtrl.navigateRoot('/menu/add-review');
+  }
+
   modify(){
     localStorage.setItem('album', JSON.stringify(this.album));
     localStorage.setItem('albumId', this.albumId);
     this.navCtrl.navigateRoot('/menu/modify-album');
   }
 
+  //Favoritos
   async add_fav(){
     var is_fav = await this.api.setFavAlbum(this.userId, this.albumId);
     console.log(is_fav["code"]);
