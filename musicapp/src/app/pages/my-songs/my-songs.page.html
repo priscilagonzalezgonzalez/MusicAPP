@@ -20,7 +20,17 @@
       <ion-avatar slot="start">
         <img src="{{track.imagen}}" alt="">
       </ion-avatar>
+      <ion-row class= "ion-justify-content-end">
+        <ion-button (click)="modify()">
+          <ion-icon name="pencil-sharp"></ion-icon>
+        </ion-button>
+    
+        <ion-button (click)="delete(review.album.id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-row>
       <ion-card-header>
+        
         <ion-card-title>
           {{track.titulo}}
         </ion-card-title>
@@ -28,6 +38,7 @@
           {{track.albumTitulo}}
         </ion-card-subtitle>
       </ion-card-header>
+      
     </ion-item>
   </ion-list>
 </ion-content>
