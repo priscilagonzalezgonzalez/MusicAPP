@@ -18,11 +18,17 @@
 <ion-content>
   <br>
   <ion-card>
-    <div *ngIf="userOwns >= 1">
-      <ion-button (click)="modify()">
-        <ion-icon name="pencil-sharp"></ion-icon>
-      </ion-button>
-  </div>
+    <ion-row class= "ion-justify-content-end">
+      <div *ngIf="userOwns >= 1">
+        <ion-button (click)="modify()">
+          <ion-icon name="pencil-sharp"></ion-icon>
+        </ion-button>
+        <ion-button (click)="delete()">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-row>
+    
   <br>
   <ion-item>
     <ion-img [src]="artista.imagen"></ion-img>

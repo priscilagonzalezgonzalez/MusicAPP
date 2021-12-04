@@ -66,4 +66,8 @@ export class ArtistasService {
       "valor": value
     }).toPromise();
   }
+
+  remArtista(artistaId:any){
+    let direccion = "/api/v1/artistas/" + artistaId;
+  }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArtistasService } from 'src/app/api/artistas.service'
 import { AlbumesService } from 'src/app/api/albumes.service'
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
  
 @Component({
   selector: 'app-artist',
@@ -23,7 +23,8 @@ export class ArtistPage implements OnInit {
     public artistasService: ArtistasService,
     public albumsService: AlbumesService,
     public navCtrl: NavController,
-    private router: Router
+    private router: Router,
+    public alertController: AlertController
   ) { }
 
   async ngOnInit() {
@@ -64,4 +65,49 @@ export class ArtistPage implements OnInit {
     localStorage.setItem('artistId', this.id);
     this.navCtrl.navigateRoot('/menu/modify-artist');
   }
+
+  /* async delete(){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      message: 'Estás a punto de eliminar el álbum, ¿deseas continuar?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        },
+        {
+          text: 'Eliminar',
+          handler: async () => {
+            var response = await this.api.remAlbum(this.userId, this.albumId);
+            if(response["code"] == "ok"){
+              const alert = await this.alertController.create({
+                header: 'Eliminado con éxito.',
+                buttons: ['Aceptar']
+              });
+              await alert.present();
+              this.api.getAlbums();
+              this.api.getAlbumsFav(this.userId);
+              this.api.getAlbumsUser(this.userId);
+
+              this.navCtrl.navigateRoot(this.prevURL);
+            }
+            else{
+              const alert = await this.alertController.create({
+                header: 'Ha ocurrido un error.',
+                message: 'No se ha podido eliminar el álbum.',
+                buttons: ['Aceptar']
+              });
+              await alert.present();
+              return
+            }
+            
+          }
+        }]
+    });
+
+    await alert.present();
+  } */
 }

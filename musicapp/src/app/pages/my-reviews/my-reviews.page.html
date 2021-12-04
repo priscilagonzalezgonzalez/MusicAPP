@@ -17,10 +17,22 @@
   <ion-title class = "ion-text-center">Mis reseñas</ion-title>
   <ion-list>
     <ion-item *ngFor="let review of myReviews">
+      
+      <br>
       <ion-avatar slot="start">
         <img src="{{review.album.imagen}}" alt="">
       </ion-avatar>
+      
       <ion-card-header>
+        <ion-row class= "ion-justify-content-end">
+          <ion-button (click)="modify()">
+            <ion-icon name="pencil-sharp"></ion-icon>
+          </ion-button>
+      
+          <ion-button (click)="delete(review.album.id)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-row>
         <ion-card-title>
           {{review.album.titulo}}
         </ion-card-title>

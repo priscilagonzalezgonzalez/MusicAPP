@@ -220,4 +220,9 @@ export class AlbumesService {
         "albumId": albumId
       }).toPromise();
   }
+
+  remReview(usuarioId: any, albumId: any){
+    let direccion = "/api/v1/usuarios/" + usuarioId + "/resenias/" + albumId;
+    return this.http.delete(direccion).toPromise();
+  }
 }
