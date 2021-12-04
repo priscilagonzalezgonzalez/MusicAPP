@@ -14,11 +14,11 @@ export class MenuPage implements OnInit {
       url: '/menu/albumes',
       icono: 'home'
     },
-    {
+    /* {
       titulo: 'Perfil',
       url: '',
       icono: 'person-sharp'
-    },
+    }, */
     {
       titulo: 'Mis álbumes',
       url: '/menu/my-albums',
