@@ -120,11 +120,8 @@ export class ModifyAlbumPage implements OnInit {
           });
     
           await alert.present();
-          console.log(ok)
           return
         }
-        console.log(this.artista);
-        console.log(this.artista.usuarioId);
         if(this.artista["usuarioId"] != this.usuarioId){
           const alert = await this.alertController.create({
             header: 'Artista no valido',

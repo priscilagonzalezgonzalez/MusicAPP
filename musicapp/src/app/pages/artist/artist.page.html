@@ -16,7 +16,18 @@
 </ion-header>
 
 <ion-content>
-  <ion-img [src]="artista.imagen"></ion-img>
+  <br>
+  <ion-card>
+    <div *ngIf="userOwns >= 1">
+      <ion-button (click)="modify()">
+        <ion-icon name="pencil-sharp"></ion-icon>
+      </ion-button>
+  </div>
+  <br>
+  <ion-item>
+    <ion-img [src]="artista.imagen"></ion-img>
+  </ion-item>
+  
   <ion-item [color]="secondary">
     <ion-title class = "ion-text-center" size="large" mode="md">{{artista.nombre}}</ion-title>
   </ion-item>
@@ -25,6 +36,8 @@
       {{artista.biografia}}
     </ion-label>
   </ion-item>
+  </ion-card>
+  
 
   <div *ngIf="!(numAlbums == 0)">
     <br>

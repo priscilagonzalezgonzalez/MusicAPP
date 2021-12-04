@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArtistasService } from 'src/app/api/artistas.service'
 import { AlbumesService } from 'src/app/api/albumes.service'
+import { NavController } from '@ionic/angular';
  
 @Component({
   selector: 'app-artist',
@@ -14,18 +15,22 @@ export class ArtistPage implements OnInit {
   artista:any
   albums:any[]
   numAlbums:any
+  userOwns = 0;
+  userId:any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     public artistasService: ArtistasService,
     public albumsService: AlbumesService,
+    public navCtrl: NavController,
     private router: Router
   ) { }
 
   async ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
     this.prevURL = localStorage.getItem("URL");
-
+    var user_stored = JSON.parse(localStorage.getItem('user'));
+    this.userId = user_stored["id"];
     // Consulta datos del artista
     this.artista = this.artistasService.artista.subscribe(artista => {
       this.artista = artista
@@ -34,6 +39,10 @@ export class ArtistPage implements OnInit {
       }
       if (artista.biografia == null) {
         artista.biografia = "No hay biografia por el momento"
+      }
+      console.log(this.artista["usuarioId"]);
+      if(this.userId == (this.artista["usuarioId"]).toString()){
+        this.userOwns = 1;
       }
     })
     this.artistasService.getArtistaById(this.id)
@@ -48,5 +57,11 @@ export class ArtistPage implements OnInit {
 
   snapURL(){
     localStorage.setItem("URL", this.router.url);
+  }
+
+  modify(){
+    localStorage.setItem('artist', JSON.stringify(this.artista));
+    localStorage.setItem('artistId', this.id);
+    this.navCtrl.navigateRoot('/menu/modify-artist');
   }
 }

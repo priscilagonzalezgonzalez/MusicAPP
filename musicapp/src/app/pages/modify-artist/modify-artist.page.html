@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <!-- <ion-back-button defaultHref = "../albums"></ion-back-button> -->
+    </ion-buttons>
+    <ion-row>
+      <ion-icon name="musical-notes-outline"></ion-icon>
+      <div>
+        <ion-title>MusicApp</ion-title>
+      </div>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class = "ion-text-center">Modificar artista</ion-card-title>
+    </ion-card-header>
+    <ion-grid>
+      <form [formGroup]="formularioArtista" >
+        <ion-item>
+          <ion-label position="floating">Nombre del artista</ion-label>
+          <ion-input  formControlName="nombre"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label position="floating">Imagen</ion-label>
+          <ion-input  formControlName="imagen"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label position="floating">Biografia</ion-label>
+          <ion-textarea formControlName="biografia"></ion-textarea>
+        </ion-item>
+        <br>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" (click)="aceptar()">Aceptar</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" (click)="cancelar()">Cancelar</ion-button>
+          </ion-col>
+        </ion-row>
+        <br>
+        
+      </form>
+      
+    </ion-grid>

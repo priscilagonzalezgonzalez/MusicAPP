@@ -49,4 +49,21 @@ export class ArtistasService {
       "usuarioId": usuarioId
     }).toPromise();
   }
+
+  existeArtista(nombre:any){
+    let direccion = "/api/v1/existe_artista";
+
+    return this.http.post(direccion,{
+      "artista": nombre
+    }).toPromise();
+  }
+
+  modifyArtista(column:any, value:any, id:any): Promise<any>{
+    let direccion = "/api/v1/artistas/" + id;
+
+    return this.http.patch(direccion, {
+      "columna": column,
+      "valor": value
+    }).toPromise();
+  }
 }
