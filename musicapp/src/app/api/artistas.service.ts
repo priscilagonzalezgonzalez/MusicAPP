@@ -67,7 +67,8 @@ export class ArtistasService {
     }).toPromise();
   }
 
-  remArtista(artistaId:any){
-    let direccion = "/api/v1/artistas/" + artistaId;
+  remArtista(usuarioId:any, artistaId:any){
+    let direccion = "/api/v1/usuarios/" + usuarioId + "/artistas/" + artistaId;
+    return this.http.delete(direccion).toPromise();
   }
 }

@@ -66,11 +66,11 @@ export class ArtistPage implements OnInit {
     this.navCtrl.navigateRoot('/menu/modify-artist');
   }
 
-  /* async delete(){
+  async delete(){
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Alerta',
-      message: 'Estás a punto de eliminar el álbum, ¿deseas continuar?',
+      message: 'Estás a punto de eliminar el artista, ¿deseas continuar?',
       buttons: [
         {
           text: 'Cancelar',
@@ -81,18 +81,16 @@ export class ArtistPage implements OnInit {
         {
           text: 'Eliminar',
           handler: async () => {
-            var response = await this.api.remAlbum(this.userId, this.albumId);
+            var response = await this.artistasService.remArtista(this.userId, this.id);
             if(response["code"] == "ok"){
               const alert = await this.alertController.create({
                 header: 'Eliminado con éxito.',
                 buttons: ['Aceptar']
               });
               await alert.present();
-              this.api.getAlbums();
-              this.api.getAlbumsFav(this.userId);
-              this.api.getAlbumsUser(this.userId);
+              this.artistasService.getArtistasUsuario(this.userId);
 
-              this.navCtrl.navigateRoot(this.prevURL);
+              this.navCtrl.navigateRoot("/menu/my-artists");
             }
             else{
               const alert = await this.alertController.create({
@@ -109,5 +107,5 @@ export class ArtistPage implements OnInit {
     });
 
     await alert.present();
-  } */
+  }
 }

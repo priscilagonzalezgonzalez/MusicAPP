@@ -225,4 +225,8 @@ export class AlbumesService {
     let direccion = "/api/v1/usuarios/" + usuarioId + "/resenias/" + albumId;
     return this.http.delete(direccion).toPromise();
   }
+
+  modifyReview(usuarioId: any, albumId: any){
+    
+  }
 }
