@@ -146,6 +146,11 @@ export class AlbumesService {
     });
   }
 
+  remTrack(id:any){
+    let direccion = "/api/v1/tracks/" + id;
+    return this.http.delete(direccion).toPromise();
+  }
+
   getFavTracks(usuarioId:any){
     let direccion = "/api/v1/usuario/" + usuarioId + "/tracks_fav";
     this.http.get<any[]>(direccion)
@@ -227,6 +232,6 @@ export class AlbumesService {
   }
 
   modifyReview(usuarioId: any, albumId: any){
-    
+
   }
 }

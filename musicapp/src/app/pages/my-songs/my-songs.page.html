@@ -21,11 +21,11 @@
         <img src="{{track.imagen}}" alt="">
       </ion-avatar>
       <ion-row class= "ion-justify-content-end">
-        <ion-button (click)="modify()">
+        <ion-button (click)="modify(track.id)">
           <ion-icon name="pencil-sharp"></ion-icon>
         </ion-button>
     
-        <ion-button (click)="delete(review.album.id)">
+        <ion-button (click)="delete(track.id)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
       </ion-row>
