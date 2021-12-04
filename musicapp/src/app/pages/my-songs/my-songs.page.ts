@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { AlbumesService } from 'src/app/api/albumes.service';
 
 @Component({
@@ -11,8 +11,11 @@ export class MySongsPage implements OnInit {
 
   tracks = [];
   userId: string;
-  constructor(private albumesService: AlbumesService,
-    private alertController:AlertController){} 
+  constructor(
+    private albumesService: AlbumesService,
+    public navCtrl: NavController,
+    private alertController:AlertController
+  ){} 
 
   ngOnInit() {
     var user_stored = JSON.parse(localStorage.getItem('user'));
@@ -63,4 +66,8 @@ export class MySongsPage implements OnInit {
     await alert.present();
   }
 
+  modify(track:any){
+    localStorage.setItem('track', JSON.stringify(track));
+    this.navCtrl.navigateRoot('/menu/modify-song');
+  }
 }

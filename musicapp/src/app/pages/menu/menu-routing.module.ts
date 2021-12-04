@@ -76,6 +76,10 @@ const routes: Routes = [
       path: 'modify-artist',
       loadChildren: () => import('../modify-artist/modify-artist.module').then( m => m.ModifyArtistPageModule)
     },
+    {
+      path: 'modify-song',
+      loadChildren: () => import('../modify-song/modify-song.module').then( m => m.ModifySongPageModule)
+    },
   ]
   }
 ];

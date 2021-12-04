@@ -187,6 +187,14 @@ export class AlbumesService {
     }).toPromise();
   }
 
+  modifyTrack(column:any, value:any, trackId:any): Promise<any>{
+    let direccion = "/api/v1/tracks/" + trackId;
+    return this.http.patch(direccion, {
+      "columna": column,
+      "valor": value
+    }).toPromise();
+  }
+
   insertAlbum(titulo:any, artista:any, anio:any, imagen:any, usuarioId:any) {
     let direccion = "/api/v1/albumes";
 

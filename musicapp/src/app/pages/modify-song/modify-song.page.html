@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-row>
+      <ion-icon name="musical-notes-outline"></ion-icon>
+      <div>
+        <ion-title>MusicApp</ion-title>
+      </div>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class = "ion-text-center">Modificar canción</ion-card-title>
+    </ion-card-header>
+    <ion-grid>
+      <form [formGroup]="formularioTrack" (ngSubmit)="aceptar()">
+        <ion-item>
+          <ion-label position="floating">Título</ion-label>
+          <ion-input formControlName="titulo"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label position="floating">Archivo</ion-label>
+          <ion-input  formControlName="archivo"></ion-input>
+        </ion-item>
+        <br>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" type="submit" [disabled]="!formularioTrack.valid">Aceptar</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" (click)="cancelar()">Cancelar</ion-button>
+          </ion-col>
+        </ion-row>
+        <br>
+      </form>
+    </ion-grid>
+  </ion-card>
+</ion-content>
